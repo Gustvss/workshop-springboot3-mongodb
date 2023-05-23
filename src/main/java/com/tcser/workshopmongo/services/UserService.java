@@ -7,6 +7,8 @@ import com.tcser.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +39,21 @@ public class UserService {
     public void delete(String id){
         findById(id);
         repo.deleteById(id);
+    }
+
+    public User update(String id, User obj){
+        try {
+            User newObj = repo.getReferenceById(id);
+            updateData(newObj, obj);
+            return repo.save(newObj);
+        } catch (NullPointerException e){
+            throw new ObjectNotFoundException(id);
+        }
+    }
+
+    private void updateData(User newObj, User obj) {
+        newObj.setName(obj.getName());
+        newObj.setEmail(obj.getEmail());
     }
 
 }
