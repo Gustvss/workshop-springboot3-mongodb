@@ -1,8 +1,12 @@
 package com.tcser.workshopmongo.dto;
 
+import com.tcser.workshopmongo.entities.Post;
 import com.tcser.workshopmongo.entities.User;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDTO implements Serializable {
 
@@ -42,4 +46,6 @@ public class UserDTO implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }
